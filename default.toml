@@ -7,7 +7,7 @@ timeout = 60
 [jenkins.http]
 enabled = true
 port = 80
-httpListenAddress = 0.0.0.0
+httpListenAddress = '0.0.0.0'
 
 [jenkins.https]
 enabled = false
