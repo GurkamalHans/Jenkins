@@ -21,7 +21,7 @@ enabled = false
 port = 8009
 
 [httplistenaddress]
-httplistenaddress = 0.0.0.0:8080
+httplistenaddress = 0.0.0.0/0
 
 [java]
 opts = "-XX:PermSize=512M -XX:MaxPermSize=2048M -Xmn128M -Xms1024M -Xmx2048M"
