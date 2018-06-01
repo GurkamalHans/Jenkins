@@ -11,7 +11,7 @@ exec java \
   --prefix={{cfg.jenkins.prefix}} \
   {{~#if cfg.jenkins.http.enabled}}
   --httpPort={{cfg.jenkins.http.port}} \
-  --httpListenAddress={{toToml.cfg.jenkins.http}} \
+  --httpListenAddress={{toToml cfg.jenkins.http}} \
   {{~#else}}
   --httpListenAddress={{sys.ip}} \
   {{~/else}}
