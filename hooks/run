@@ -11,10 +11,11 @@ exec java \
   --prefix={{cfg.jenkins.prefix}} \
   {{~#if cfg.jenkins.http.enabled}}
   --httpPort={{cfg.jenkins.http.port}} \
+  {{~#if cfg.jenkins.http.httpListenAddress}}
   --httpListenAddress={{cfg.jenkins.http.httpListenAddress}} \
   {{~else}}
   --httpListenAddress={{sys.ip}} \
-  {{~/else}}
+  {{~/if}}
   {{~/if}}
   {{~#if cfg.jenkins.https.enabled}}
   --httpsPort={{cfg.jenkins.https.port}} \
