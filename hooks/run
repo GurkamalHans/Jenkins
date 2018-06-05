@@ -12,7 +12,7 @@ exec java \
   {{~#if cfg.jenkins.http.enabled}}
   --httpPort={{cfg.jenkins.http.port}} \
   --httpListenAddress={{cfg.jenkins.http.httpListenAddress}} \
-  {{~#else}}
+  {{~else}}
   --httpListenAddress={{sys.ip}} \
   {{~/else}}
   {{~/if}}
