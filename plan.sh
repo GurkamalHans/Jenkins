@@ -1,6 +1,6 @@
 pkg_name=jenkins
 pkg_origin=gurkamalhans
-pkg_version=2.121.1
+pkg_version=2.107.1
 pkg_maintainer="The Habitat Maintainers <humans@habitat.sh>"
 pkg_description="The leading open source automation server, Jenkins provides hundreds of plugins to support building, deploying and automating any project."
 pkg_license=('mit')
