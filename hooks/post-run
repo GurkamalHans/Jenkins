@@ -6,12 +6,12 @@ export JAVA_HOME="{{pkgPathFor "core/jre8"}}"
 export JENKINS_MASTER="{{sys.ip}}:{{cfg.jenkins.http.port}}"
 export JENKINS_HOME="{{pkg.svc_data_path}}"
 
-wget http://localhost/jnlpJars/jenkins-cli.jar -O {{pkg.svc_data_path}}/cli.jar
+wget http://localhost/jnlpJars/jenkins-cli.jar
 
-java -jar ${{pkg.svc_data_path}}/cli.jar -s http://localhost install-plugin groovy
+java -jar jenkins-cli.jar -s http://localhost install-plugin groovy
 
-pass='sudo cat ${{JENKINS_HOME}}/data/secrets/initialAdminPassword' && echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount{"admin", "password123")' | sudo java -jar ${{pkg.svc_data_path}}/cli.jar -auth admin:$pass -s http://localhost groovy =
+pass='sudo cat ${{pkg.svc_data_path}}/data/secrets/initialAdminPassword' && echo 'jenkins.model.Jenkins.instance.securityRealm.createAccount{"admin", "password123")' | sudo java -jar jenkins-cli.jar -auth admin:$pass -s http://localhost groovy =
 
-echo 'jenkins.model.Jenkins.instance.save()' | sudo java -jar ${{pkg.svc_data_path}}/cli.jar -auth admin:password123 -s http://localhost groovy =
+echo 'jenkins.model.Jenkins.instance.save()' | sudo java -jar jenkins-cli.jar -auth admin:password123 -s http://localhost groovy =
 
-echo 'jenkins.model.Jenkins.instance.save()' | sudo java -jar ${{pkg.svc_data_path}}/cli.jar -auth admin:password123 -s http://localhost groovy =
+echo 'jenkins.model.Jenkins.instance.save()' | sudo java -jar jenkins-cli.jar -auth admin:password123 -s http://localhost groovy =
