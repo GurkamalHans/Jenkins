@@ -2,8 +2,5 @@
 
 exec 2>&1
 
-export JENKINS_HOME="{{pkg.svc_data_path}}"
-export JENKINS_CONFIG="{{pkg.svc_config_path}}"
-
-cp ${{JENKINS_HOME}}/init.groovy ${{pkg.svc_config_path}}
+cp {{pkg.svc_data_path}}/init.groovy {{pkg.svc_config_path}}
 
