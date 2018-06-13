@@ -12,8 +12,7 @@ if (Jenkins.instance.pluginManager.plugins.collect {
         it.shortName
     }.intersect(REQUIRED_PLUGINS).size() != REQUIRED_PLUGINS.size()) {
     REQUIRED_PLUGINS.collect {
-         def plugin = Jenkins.instance.updateCenter.getPlugin(it)
-         plugin.deploy()
+         Jenkins.instance.updateCenter.getPlugin(it).deploy(true)
     }.each {
         it.get()
     }
