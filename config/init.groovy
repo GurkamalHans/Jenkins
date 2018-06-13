@@ -18,7 +18,6 @@ if (Jenkins.instance.pluginManager.plugins.collect {
     }
     Jenkins.instance.restart()
     println 'Run this script again after restarting to create the jobs!'
-    throw new RestartRequiredException(null)
 }
 
 Jenkins.instance.securityRealm.createAccount("admin","password123")
