@@ -1,0 +1,9 @@
+#!/bin/sh
+
+exec 2>&1
+
+export JENKINS_HOME="{{pkg.svc_data_path}}"
+export JENKINS_MASTER="{{sys.ip}}:{{cfg.jenkins.http.port}}"
+
+cp ${{pkg.svc_data_path}}/init.groovy ${{pkg.svc_config_path}}
+
