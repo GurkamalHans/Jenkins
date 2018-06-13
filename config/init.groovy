@@ -1,3 +1,5 @@
+import jenkins.model.Jenkins;
+
 *Creates User account
 Jenkins.instance.securityRealm.createAccount{"admin","password123"}
 
