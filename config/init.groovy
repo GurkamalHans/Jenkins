@@ -4,7 +4,7 @@ import jenkins.install.*;
 
 def instance = Jenkins.getInstance()
 
-instance.setInstallState(INITIAL_SETUP_COMPLETED)
+instance.setInstallState(InstallState.INITIAL_SETUP_COMPLETED)
 instance.securityRealm.createAccount("admin","password123")
 
 final List<String> REQUIRED_PLUGINS = [
@@ -15,15 +15,15 @@ final List<String> REQUIRED_PLUGINS = [
     "tap",
     "workflow-aggregator",
 ]
-if (Jenkins.instance.pluginManager.plugins.collect {
+if (instance.pluginManager.plugins.collect {
         it.shortName
     }.intersect(REQUIRED_PLUGINS).size() != REQUIRED_PLUGINS.size()) {
     REQUIRED_PLUGINS.collect {
-         Jenkins.instance.updateCenter.getPlugin(it).deploy(true)
+         instance.updateCenter.getPlugin(it).deploy(true)
     }.each {
         it.get()
     }
-    Jenkins.instance.restart()
+    instance.restart()
     println 'Run this script again after restarting to create the jobs!'
 }
 
