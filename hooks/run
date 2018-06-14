@@ -31,5 +31,7 @@ exec java \
   {{~else}}
   --ajp13Port=-1 \
   {{~/if}}
-  --sessionTimeout={{cfg.jenkins.session.timeout}}
+  --sessionTimeout={{cfg.jenkins.session.timeout}} \
+-Djenkins.install.runSetupWizard=false
+ 
 

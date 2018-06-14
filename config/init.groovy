@@ -1,4 +1,5 @@
 import jenkins.model.Jenkins;
+Jenkins.instance.securityRealm.createAccount("admin","password123")
 
 final List<String> REQUIRED_PLUGINS = [
     "aws-credentials",
@@ -20,7 +21,6 @@ if (Jenkins.instance.pluginManager.plugins.collect {
     println 'Run this script again after restarting to create the jobs!'
 }
 
-Jenkins.instance.securityRealm.createAccount("admin","password123")
 
 Jenkins.instance.setSlaveAgentPort(9999)
 Jenkins.instance.save() 
