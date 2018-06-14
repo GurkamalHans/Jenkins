@@ -1,6 +1,11 @@
 import jenkins.model.*
+import hudson.util.*;
+import jenkins.install.*;
 
-Jenkins.instance.securityRealm.createAccount("admin","password123")
+def instance = Jenkins.getInstance()
+
+instance.setInstallState(INITIAL_SETUP_COMPLETED)
+instance.securityRealm.createAccount("admin","password123")
 
 final List<String> REQUIRED_PLUGINS = [
     "aws-credentials",
@@ -23,5 +28,5 @@ if (Jenkins.instance.pluginManager.plugins.collect {
 }
 
 
-Jenkins.instance.setSlaveAgentPort(9999)
-Jenkins.instance.save() 
+instance.setSlaveAgentPort(9999)
+instance.save() 
