@@ -1,8 +1,5 @@
 import jenkins.model.*
-import hudson.util.*;
-import jenkins.install.*;
 
-Jenkins.instance.setInstallState(InstallState.INITIAL_SETUP_COMPLETED)
 Jenkins.instance.securityRealm.createAccount("admin","password123")
 
 final List<String> REQUIRED_PLUGINS = [
