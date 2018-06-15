@@ -4,6 +4,7 @@ exec 2>&1
 
 export JAVA_HOME="{{pkgPathFor "core/jre8"}}"
 export JENKINS_HOME="{{pkg.svc_data_path}}"
+export JENKINS_WAR="{{pkg.path}}/jenkins.war"
 
 exec java \
   {{cfg.java.opts}} \

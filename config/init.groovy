@@ -1,30 +1,16 @@
 import jenkins.model.*
-import hudson.util.*;
-import jenkins.install.*;
+import hudson.security.*
 
-Jenkins.getInstance().setInstallState(InstallState.INITIAL_SETUP_COMPLETED)
-Jenkins.instance.securityRealm.createAccount("admin","password123")
+def instance = Jenkins.getInstance()
 
-final List<String> REQUIRED_PLUGINS = [
-    "aws-credentials",
-    "copyartifact",
-    "git",
-    "ssh-agent",
-    "tap",
-    "workflow-aggregator",
-]
-if (Jenkins.instance.pluginManager.plugins.collect {
-        it.shortName
-    }.intersect(REQUIRED_PLUGINS).size() != REQUIRED_PLUGINS.size()) {
-    REQUIRED_PLUGINS.collect {
-        Jenkins.instance.updateCenter.getPlugin(it).deploy(true)
-    }.each {
-        it.get()
-    }
-    Jenkins.instance.restart()
-    println 'Run this script again after restarting to create the jobs!'
-}
+def hudsonRealm = new HudsonPrivateSecurityRealm(false)
+hudsonRealm.createAccount("{{cfg.admin.username}}", "{{cfg.admin.password}}")
+instance.setSecurityRealm(hudsonRealm)
+instance.save()
 
+def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
+strategy.setAllowAnonymousRead(false)
+instance.setAuthorizationStrategy(strategy)
 
-Jenkins.instance.setSlaveAgentPort(9999)
-Jenkins.instance.save() 
+instance.setSlaveAgentPort({{cfg.config.slavePort}})
+instance.save()

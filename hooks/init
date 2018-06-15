@@ -3,4 +3,3 @@
 exec 2>&1
 
 cp {{pkg.svc_config_path}}/init.groovy {{pkg.svc_data_path}}
-
