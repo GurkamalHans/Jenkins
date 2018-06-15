@@ -8,7 +8,7 @@ export JENKINS_WAR="{{pkg.path}}/jenkins.war"
 
 exec java \
   {{cfg.java.opts}} \
-  -jar "{{pkg.path}}/jenkins.war" \
+  -jar "${JENKINS_WAR}" \
   --prefix={{cfg.jenkins.prefix}} \
   {{~#if cfg.jenkins.http.enabled}}
   --httpPort={{cfg.jenkins.http.port}} \
@@ -33,5 +33,3 @@ exec java \
   --ajp13Port=-1 \
   {{~/if}}
   --sessionTimeout={{cfg.jenkins.session.timeout}}
- 
-
